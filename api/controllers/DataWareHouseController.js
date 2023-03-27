@@ -6,7 +6,7 @@ import {
   restartDataWarehouseJob,
   amountSpentByExplorer,
   explorersByAmountSpent
-} from "../services/DataWarehouseServiceProvider.js";
+} from "../services/DataWareHouseServiceProvider.js";
 
 const listIndicators = async (req, res) => {
   try {
@@ -225,7 +225,7 @@ const buildPdf = async ({ indicator, ratioChart, barChart }) => {
     y: 338
   });
 
-  return await pdfDoc.saveAsBase64({dataUri: true});
+  return await pdfDoc.saveAsBase64({ dataUri: true });
 };
 
 const rebuildPeriod = (req, res) => {

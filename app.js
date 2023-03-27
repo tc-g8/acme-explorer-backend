@@ -9,7 +9,7 @@ import tripRoutes from "./api/routes/TripRoutes.js";
 import initMongoDBConnection from "./api/config/mongoose.js";
 import swagger from "./docs/swagger.js";
 import admin from "firebase-admin";
-import { initializeDataWarehouseJob } from "./api/services/DataWarehouseServiceProvider.js";
+import { initializeDataWarehouseJob } from "./api/services/DataWareHouseServiceProvider.js";
 import { I18n } from "i18n";
 import { i18nConfiguration } from "./api/middlewares/I18nMiddleware.js";
 dotenv.config();
