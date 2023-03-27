@@ -1,0 +1,14 @@
+{
+  "ACTOR_NOT_FOUND": "Actor no encontrado",
+  "CONFIGURATION_NOT_FOUND": "Configuración no encontrada",
+  "TRIP_NOT_FOUND": "Viaje no encontrado",
+  "STAGE_NOT_FOUND": "Etapa no encontrada",
+  "SPONSORSHIP_NOT_FOUND": "Patrocinio no encontrado",
+  "NO_SPONSORSHIPS": "El patrocinador no tiene patrocinios",
+  "UNEXPECTED_ERROR": "Error inesperado",
+  "LOGIN_ERROR": "Error al iniciar sesión",
+  "PUBLISHED_TRIP": "No puedes modificar ni eliminar un viaje publicado",
+  "UNPUBLISHED_TRIP": "No puedes cancelar un viaje no publicado",
+  "TRIP_STARTED": "No puedes cancelar un viaje que ya ha empezado",
+  "APPLICATIONS_ACCEPTED": "No puedes cancelar un viaje con solicitutes aceptadas"
+}

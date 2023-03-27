@@ -1,0 +1,43 @@
+{
+  "name": "acme-explorer-api-rest",
+  "version": "1.0.0",
+  "description": "API REST for travel agency",
+  "license": "UNLICENSED",
+  "type": "module",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test-controllers": "cross-env NODE_ENV=testing mocha \"test/controllers/*.test.js\" --exit",
+    "test-integration": "cross-env NODE_ENV=testing mocha \"test/integration/*.test.js\" --exit",
+    "build": "docker build . -t acme-explorer-api-rest:1.0.0 -t acme-explorer-api-rest:latest",
+    "populate": "node --no-warnings populate.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "cron": "^2.2.0",
+    "cross-env": "^7.0.3",
+    "dateformat": "^5.0.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.0",
+    "express-validator": "^6.14.3",
+    "firebase-admin": "^11.5.0",
+    "i18n": "^0.15.1",
+    "mongoose": "^6.9.0",
+    "nanoid": "^4.0.1",
+    "pdf-lib": "^1.17.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "eslint": "^8.33.0",
+    "eslint-config-standard": "^17.0.0",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
+    "sinon": "^15.0.1"
+  }
+}

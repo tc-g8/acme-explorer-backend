@@ -1,0 +1,17 @@
+components:
+  schemas:
+    configuration:
+      type: object
+      required:
+        - _id
+      properties:
+        _id:
+          type: string
+        sponsorshipPrice:
+          type: number
+        defaultLanguage:
+          type: string
+        cacheLifeTime:
+          type: number
+        paginationSize:
+          type: number

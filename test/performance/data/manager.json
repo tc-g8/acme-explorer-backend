@@ -1,0 +1,11 @@
+{
+  "name": "Elena",
+  "surname": "Molino",
+  "email": "elenamolino99@gmail.com",
+  "phone": "636544917",
+  "address": "Bidasoa",
+  "password": "Elena_12345",
+  "role": [
+    "MANAGER"
+  ]
+}

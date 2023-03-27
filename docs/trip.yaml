@@ -1,0 +1,533 @@
+paths:
+  /api/v1/trips:
+    get:
+      tags:
+        - Trips
+      description: Returns all trips
+      operationId: findTrips
+      responses:
+        200:
+          description: Trip list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/trip"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+    post:
+      tags:
+        - Trips
+      description: Creates a new trip
+      operationId: addTrip
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                requirements:
+                  type: array
+                  items: {}
+                startDate:
+                  type: string
+                endDate:
+                  type: string
+                stages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                      description:
+                        type: string
+                      price:
+                        type: number
+                manager_id:
+                  type: string
+        description: Trip to be created
+        required: true
+      responses:
+        201:
+          description: Trip
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/trips/{_id}:
+    get:
+      tags:
+        - Trips
+      description: Returns a single trip by its _id
+      operationId: findBy_id
+      parameters:
+        - required: true
+          name: _id
+          description: _id of the trip to fetch
+          in: path
+          schema:
+            type: string
+      responses:
+        200:
+          description: Trip found by _id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/trip"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+    put:
+      tags:
+        - Trips
+      description: Update a trip based on its _id
+      operationId: updateTrip
+      parameters:
+        - required: true
+          name: _id
+          description: _id of the trip to update
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                requirements:
+                  type: array
+                  items: {}
+                startDate:
+                  type: string
+                endDate:
+                  type: string
+        description: Trip to be updated
+        required: true
+      responses:
+        "204":
+          description: Trip updated
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+    delete:
+      tags:
+        - Trips
+      description: Deletes a single trip based on its _id
+      operationId: deleteTrip
+      parameters:
+        - required: true
+          name: _id
+          description: _id of the trip to delete
+          in: path
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Trip deleted
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/trips/manager/{managerId}:
+    get:
+      tags:
+        - Trips
+      description: Returns all manager trips
+      operationId: aggregate
+      parameters:
+        - required: true
+          name: managerId
+          description: id of the manager logged into the system
+          in: path
+          schema:
+            type: string
+      responses:
+        200:
+          description: Trips found by managerId
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/trip"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/trips/{id}/publish:
+    patch:
+      tags:
+        - Trips
+      description: Publish a trip
+      operationId: publishTrip
+      parameters:
+        - required: true
+          name: id
+          description: _id of the trip to publish
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: Trip to be published
+        required: true
+      responses:
+        "204":
+          description: Trip updated
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/trips/{id}/cancel:
+    patch:
+      tags:
+        - Trips
+      description: Cancel a trip
+      operationId: cancelTrip
+      parameters:
+        - required: true
+          name: id
+          description: _id of the trip to cancel
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cancelationReason:
+                  type: string
+        description: Trip to be cancelled
+        required: true
+      responses:
+        "204":
+          description: Trip updated
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/trips/{id}/stages:
+    put:
+      tags:
+        - Trips
+      description: Add a stage to a trip
+      operationId: addStage
+      parameters:
+        - required: true
+          name: id
+          description: _id of the trip to update
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: number
+        description: Stage added to trip
+        required: true
+      responses:
+        "204":
+          description: Trip updated
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/trips/{tripId}/stages/{stageId}:
+    put:
+      tags:
+        - Trips
+      description: Update a stage from a trip
+      operationId: updateTripStage
+      parameters:
+        - required: true
+          name: tripId
+          description: _id of the trip to update
+          in: path
+          schema:
+            type: string
+        - required: true
+          name: stageId
+          description: _id of the stage to update
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: number
+        description: Stage from a trip to be updated
+        required: true
+      responses:
+        "204":
+          description: Trip updated
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/trips/sponsorships/sponsor/{id}:
+    get:
+      tags:
+        - Trips
+      description: Returns all sponsorships by sponsor_id
+      operationId: findSponsorshipsBySponsorId
+      parameters:
+        - required: true
+          name: id
+          description: _id of the sponsor
+          in: path
+          schema:
+            type: string
+      responses:
+        200:
+          description: Sponsorships from the sponsor
+          content:
+            application/json:
+              schema:
+              type: array
+              properties:
+                type: object
+                properties:
+                  banner:
+                    type: string
+                  landingPage:
+                    type: string
+                  amount:
+                    type: number
+                  status:
+                    type: string
+                  sponsor_id:
+                    type: string
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/trips/sponsorships/{id}:
+    get:
+      tags:
+        - Trips
+      description: Returns a sponsorship from a trip by id
+      operationId: getTripSponsorshipById
+      parameters:
+        - required: true
+          name: id
+          description: _id of the sponsorship
+          in: path
+          schema:
+            type: string
+      responses:
+        200:
+          description: Sponsorship from a trip
+          content:
+            application/json:
+              schema:
+              type: array
+              properties:
+                type: object
+                properties:
+                  banner:
+                    type: string
+                  landingPage:
+                    type: string
+                  amount:
+                    type: number
+                  status:
+                    type: string
+                  sponsor_id:
+                    type: string
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/trips/{id}/sponsorships:
+    put:
+      tags:
+        - Trips
+      description: Add a sponsorship to a trip
+      operationId: addSponsorship
+      parameters:
+        - required: true
+          name: id
+          description: _id of the trip to update
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                banner:
+                  type: string
+                landingPage:
+                  type: string
+                sponsor_id:
+                  type: string
+        description: Sponsorship added to trip
+        required: true
+      responses:
+        "204":
+          description: Trip updated
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/trips/{tripId}/sponsorships/{sponsorshipId}:
+    put:
+      tags:
+        - Trips
+      description: Update a sponsorship from a trip
+      operationId: updateTripSponsorship
+      parameters:
+        - required: true
+          name: tripId
+          description: _id of the trip to update
+          in: path
+          schema:
+            type: string
+        - required: true
+          name: sponsorshipId
+          description: _id of the sponsorship to update
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                banner:
+                  type: string
+                landingPage:
+                  type: string
+        description: Sponsorship from a trip to be updated
+        required: true
+      responses:
+        "204":
+          description: Trip updated
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+    patch:
+      tags:
+        - Trips
+      description: Logical remove of sponsorship
+      operationId: deleteTripSponsorshipLogically
+      parameters:
+        - required: true
+          name: tripId
+          description: _id of the trip to update
+          in: path
+          schema:
+            type: string
+        - required: true
+          name: sponsorshipId
+          description: _id of the sponsorship to delete logically
+          in: path
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Trip updated
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/trips/{tripId}/sponsorships/{sponsorshipId}/pay:
+    post:
+      tags:
+        - Trips
+      description: Pay a sponsorship based on its id
+      operationId: paySponsorship
+      parameters:
+        - required: true
+          name: tripId
+          description: _id of the trip to update
+          in: path
+          schema:
+            type: string
+        - required: true
+          name: sponsorshipId
+          description: _id of the sponsorship to update
+          in: path
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/trip"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"

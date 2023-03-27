@@ -1,0 +1,28 @@
+components:
+  schemas:
+    actor:
+      type: object
+      required:
+        - _id
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        address:
+          type: string
+        password:
+          type: string
+        preferredLanguage:
+          type: string
+        role:
+          type: array
+          items: {}
+        banned:
+          type: boolean

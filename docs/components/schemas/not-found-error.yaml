@@ -1,0 +1,9 @@
+components:
+  schemas:
+    not-found-error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string

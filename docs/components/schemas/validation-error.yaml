@@ -1,0 +1,20 @@
+components:
+  schemas:
+    validation-error:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+              msg:
+                type: string
+              param:
+                type: string
+              location:
+                type: string

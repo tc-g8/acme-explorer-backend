@@ -1,0 +1,6 @@
+{
+  "sponsorshipPrice": 500,
+  "defaultLanguage": "en",
+  "cacheLifeTime": 4000,
+  "paginationSize": 10
+}

@@ -1,0 +1,21 @@
+components:
+  schemas:
+    application:
+      type: object
+      required:
+        - _id
+      properties:
+        _id:
+          type: string
+        requestDate:
+          type: string
+        status:
+          type: string
+        comment:
+          type: string
+        rejectedReason:
+          type: string
+        explorer_id:
+          type: string
+        trip_id:
+          type: string

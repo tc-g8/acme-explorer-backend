@@ -1,0 +1,110 @@
+paths:
+  /api/v1/dashboard:
+    get:
+      tags:
+        - Dashboard
+      description: Returns all indicators from datawarehouse
+      operationId: listIndicators
+      responses:
+        200:
+          description: All indicators from datawarehouse
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/datawarehouse"
+    post:
+      tags:
+        - Dashboard
+      description: Update the computation period of datawarehouse
+      operationId: rebuildPeriod
+      parameters:
+        - in: query
+          name: rebuildPeriod
+          schema:
+            type: string
+          description: Cronjob period
+          required: true
+      responses:
+        200:
+          description: Cronjob period updated
+          content:
+            text/plain:
+              schema:
+                type: string
+  /api/v1/dashboard/latest:
+    get:
+      tags:
+        - Dashboard
+      description: Returns the last indicator from datawarehouse
+      operationId: lastIndicator
+      responses:
+        200:
+          description: Last indicator from datawarehouse
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/datawarehouse"
+  /api/v1/dashboard/amount-spent-by-explorer:
+    post:
+      tags:
+        - Dashboard
+      description: Returns the total spent in a period by an explorer
+      operationId: amountSpentByExplorerController
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                explorer_id:
+                  type: string
+                period:
+                  type: string
+        description: Explorer id and period of time
+        required: true
+      responses:
+        200:
+          description: Amount of spent money
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  amount:
+                    type: number  
+  /api/v1/dashboard/explorers-by-amount-spent:
+    post:
+      tags:
+        - Dashboard
+      description: Returns all explorers that meet the spending condition in a period
+      operationId: explorersByAmountSpentController
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                period:
+                  type: string
+                theta:
+                  type: string
+                v:
+                  type: number
+        description: Period of time, comparator and amount spent
+        required: true
+      responses:
+        200:
+          description: List of  explorers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    amount:
+                      type: number

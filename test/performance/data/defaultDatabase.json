@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "63f87774bf5b46784338ec1a"
+  },
+  "name": "June",
+  "surname": "Tillman",
+  "email": "june1@alvarado.com",
+  "phone": "9",
+  "address": "90 Elm Place, Neibert, Federated States Of Micronesia",
+  "password": "0a84fd2c-d933-4c79-a4a8-1afa1ca75ffc",
+  "preferredLanguage": "en",
+  "role": [
+    "EXPLORER"
+  ],
+  "banned": false,
+  "__v": 0,
+  "created": "2021-03-14T03:41:05.496Z"
+},
+
+{
+  "_id": {
+    "$oid": "63ef50fea06dbef16f6193e6"
+  },
+  "sponsorshipPrice": 500,
+  "defaultLanguage": "en",
+  "cacheLifeTime": 3600,
+  "paginationSize": 10
+},
+
+{
+  "_id": {
+    "$oid": "63f744014951bc47d4506660"
+  },
+  "requestDate": {
+    "$date": {
+      "$numberLong": "1679990520799"
+    }
+  },
+  "status": "PENDING",
+  "comment": "Laboris consectetur laborum aute aliqua in sit aliqua consectetur consequat do aliqua sit. Irure in ea sunt deserunt exercitation id enim minim nulla mollit qui ea do adipisicing. Id minim consequat reprehenderit elit in occaecat nostrud Lorem do ipsum ut enim qui commodo. Incididunt Lorem aliqua excepteur sint est. Adipisicing deserunt labore aliquip veniam ut Lorem velit in elit ea minim id.",
+  "rejectedReason": null,
+  "trip_id": {
+    "$oid": "641714083b6ce03036949ebf"
+  },
+  "explorer_id": {
+    "$oid": "63f877743b01df6cc835a479"
+  },
+  "paidAt": null,
+  "__v": 0
+}
+
+]

@@ -1,0 +1,74 @@
+paths:
+  /api/v1/configurations:
+    get:
+      tags:
+        - Configurations
+      description: Returns all configurations
+      operationId: getConfiguration
+      responses:
+        200:
+          description: Configuration list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/configuration"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/configurations/{id}:
+    put:
+      tags:
+        - Configurations
+      description: Update a configuration based on its id
+      operationId: updateConfiguration
+      parameters:
+        - required: true
+          name: id
+          description: id of the configuration to update
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sponsorshipPrice:
+                  type: number
+                defaultLanguage:
+                  type: string
+                cacheLifeTime:
+                  type: number
+                paginationSize:
+                  type: number
+        description: Configuration to be updated
+        required: true
+      responses:
+        200:
+          description: Configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/configuration"
+        404:
+          description: Configuration not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/not-found-error"
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/validation-error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"

@@ -1,0 +1,61 @@
+components:
+  schemas:
+    datawarehouse:
+      type: object
+      properties:
+        tripsManagedByManager:
+          type: object
+          properties:
+            averageTripsPerManager:
+              type: number
+            minTripsPerManager:
+              type: number
+            maxTripsPerManager:
+              type: number
+            stdDevTripsPerManager:
+              type: number
+        applicationsPerTrip:
+          type: object
+          properties:
+            averageApplicationsPerTrip:
+              type: number
+            minApplicationsPerTrip:
+              type: number
+            maxApplicationsPerTrip:
+              type: number
+            stdDevApplicationsPerTrip:
+              type: number
+        tripsPrice:
+          type: object
+          properties:
+            averagePrice:
+              type: number
+            minPrice:
+              type: number
+            maxPrice:
+              type: number
+            stdDevPrice:
+              type: number
+        ratioApplicationsByStatus:
+          type: object
+          properties:
+            _id:
+              type: string
+            applications:
+              type: number
+          averagePriceRange:
+            averageMinPrice:
+              type: number
+            averageMaxPrice:
+              type: number
+        topSearchedKeywords:
+          type: object
+          properties:
+            _id:
+              type: string
+            totalSearch:
+              type: number
+        computationMoment:
+          type: string
+        rebuildPeriod:
+          type: string

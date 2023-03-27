@@ -1,0 +1,303 @@
+paths:
+  /api/v1/actors/login:
+    post:
+      tags:
+        - Actors
+      description: Login actor
+      operationId: loginActor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string  
+        description: Actor credentials
+        required: true
+      responses:
+        204:
+          description: Actor authenticated
+        401:
+          description: Unauthorized error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /api/v1/actors:
+    post:
+      tags:
+        - Actors
+      description: Creates a new actor
+      operationId: addActor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                surname:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                address:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: array
+                  items: {}
+        description: Actor to be created
+        required: true
+      responses:
+        201:
+          description: Actor
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/validation-error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+    get:
+      tags:
+        - Actors
+      description: Returns all actors
+      operationId: getActors
+      responses:
+        200:
+          description: Actor list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/actor"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/actors/{id}:
+    get:
+      tags:
+        - Actors
+      description: Returns a single actor by its id
+      operationId: findById
+      parameters:
+        - required: true
+          name: id
+          description: id of the actor to fetch
+          in: path
+          schema:
+            type: string
+      responses:
+        200:
+          description: Actor found by id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/actor"
+        404:
+          description: Actor not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/not-found-error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+    put:
+      tags:
+        - Actors
+      description: Update a actor based on its id
+      operationId: updateActor
+      parameters:
+        - required: true
+          name: id
+          description: id of the actor to update
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                surname:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                address:
+                  type: string
+                preferredLanguage:
+                  type: string
+                role:
+                  type: array
+                  items: {}
+        description: Actor to be updated
+        required: true
+      responses:
+        204:
+          description: Actor updated
+          headers:
+            Resource-Path:
+              description: Path to updated resource
+              schema:
+                type: string
+        404:
+          description: Actor not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/not-found-error"
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/validation-error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+    delete:
+      tags:
+        - Actors
+      description: Deletes a single actor based on its id
+      operationId: deleteActor
+      parameters:
+        - required: true
+          name: id
+          description: id of the actor to delete
+          in: path
+          schema:
+            type: string
+      responses:
+        204:
+          description: Actor deleted
+        404:
+          description: Actor not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/not-found-error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/actors/{id}/ban:
+    patch:
+      tags:
+        - Actors
+      description: Ban or unban an actor
+      operationId: banActor
+      parameters:
+        - required: true
+          name: id
+          description: id of the actor
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                banned:
+                  type: boolean  
+        description: Ban flag
+        required: true
+      responses:
+        204:
+          description: Updated actor ban flag
+        404:
+          description: Actor not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/not-found-error"
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/validation-error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/actors/{id}/update-password:
+    patch:
+      tags:
+        - Actors
+      description: Update an actor password
+      operationId: updateActorPassword
+      parameters:
+        - required: true
+          name: id
+          description: id of the actor
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+        description: Actor password
+        required: true
+      responses:
+        204:
+          description: Updated actor password
+        404:
+          description: Actor not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/not-found-error"
+        422:
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/validation-error"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"

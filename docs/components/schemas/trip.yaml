@@ -1,0 +1,39 @@
+components:
+  schemas:
+    trip:
+      type: object
+      required:
+        - _id
+      properties:
+        _id:
+          type: string
+        ticker:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        requirements:
+          type: array
+          items: {}
+        startDate:
+          type: string
+        endDate:
+          type: string
+        imageCollection:
+          type: array
+          items: {}
+        cancelationReason:
+          type: string
+        status:
+          type: string
+        stages:
+          type: array
+          items: {}
+        sponsorship:
+          type: array
+          items: {}
+        manager_id:
+          type: string

@@ -1,0 +1,14 @@
+{
+  "ACTOR_NOT_FOUND": "Actor not found",
+  "CONFIGURATION_NOT_FOUND": "Configuration not found",
+  "TRIP_NOT_FOUND": "Trip not found",
+  "STAGE_NOT_FOUND": "Stage not found",
+  "SPONSORSHIP_NOT_FOUND": "Sponsorhip not found",
+  "NO_SPONSORSHIPS": "This sponsor has no sponsorships",
+  "UNEXPECTED_ERROR": "Unexpected error",
+  "LOGIN_ERROR": "Failed to login",
+  "PUBLISHED_TRIP": "Can not modify or delete a published trip",
+  "UNPUBLISHED_TRIP": "Can not cancel an unpublished trip",
+  "TRIP_STARTED": "Can not cancel a trip that already started",
+  "APPLICATIONS_ACCEPTED": "Can not cancel a trip with accepted applications"
+}

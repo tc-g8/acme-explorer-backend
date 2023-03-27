@@ -1,0 +1,10 @@
+components:
+  $ref:
+    - "./components/schemas/actor.yaml"
+    - "./components/schemas/application.yaml"
+    - "./components/schemas/trip.yaml"
+    - "./components/schemas/configuration.yaml"
+    - "./components/schemas/error.yaml"
+    - "./components/schemas/validation-error.yaml"
+    - "./components/schemas/not-found-error.yaml"
+    - "./components/schemas/datawarehouse.yaml"

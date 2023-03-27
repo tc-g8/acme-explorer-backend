@@ -1,0 +1,246 @@
+paths:
+  /api/v1/applications:
+    post:
+      tags:
+        - Applications
+      description: Creates a new application
+      operationId: addApplication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                explorer_id:
+                  type: string
+                trip_id:
+                  type: string
+        description: Application to be created
+        required: true
+      responses:
+        201:
+          description: Application
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/application"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/applications/explorer/{explorerId}:
+    get:
+      tags:
+        - Applications
+      description: Returns explorer application groupping by status
+      operationId: aggregate
+      parameters:
+        - required: true
+          name: explorerId
+          description: id of the explorer logged into the system
+          in: path
+          schema:
+            type: string
+      responses:
+        200:
+          description: Applications found by explorerId
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/application"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/applications/trip/{tripId}:
+    get:
+      tags:
+        - Applications
+      description: Returns trip application
+      operationId: find
+      parameters:
+        - required: true
+          name: tripId
+          description: id of the trip
+          in: path
+          schema:
+            type: string
+      responses:
+        200:
+          description: Applications found by tripId
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/application"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/applications/{id}:
+    get:
+      tags:
+        - Applications
+      description: Returns a single application by its id
+      operationId: findBy_id
+      parameters:
+        - required: true
+          name: id
+          description: id of the application to fetch
+          in: path
+          schema:
+            type: string
+      responses:
+        200:
+          description: Application found by id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/application"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/applications/{id}/change-status:
+    patch:
+      tags:
+        - Applications
+      description: Update an application status based on its id
+      operationId: updateApplicationStatus
+      parameters:
+        - required: true
+          name: id
+          description: id of the application to update
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+        description: Application to be updated
+        required: true
+      responses:
+        200:
+          description: Application updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/application"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/applications/{id}/change-comment:
+    patch:
+      tags:
+        - Applications
+      description: Update an application comment based on its id
+      operationId: updateApplicationComment
+      parameters:
+        - required: true
+          name: id
+          description: id of the application to update
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+        description: Application to be updated
+        required: true
+      responses:
+        200:
+          description: Application updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/application"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/applications/{id}/reject:
+    patch:
+      tags:
+        - Applications
+      description: Reject an application based on its id
+      operationId: rejectApplication
+      parameters:
+        - required: true
+          name: id
+          description: id of the application to reject
+          in: path
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rejectedReason:
+                  type: string
+        description: Application to be rejected
+        required: true
+      responses:
+        200:
+          description: Application rejected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/application"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /api/v1/applications/{id}/pay:
+    post:
+      tags:
+        - Applications
+      description: Pay an application based on its id
+      operationId: payApplication
+      parameters:
+        - required: true
+          name: id
+          description: id of the application
+          in: path
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/application"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
