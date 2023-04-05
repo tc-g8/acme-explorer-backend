@@ -48,8 +48,8 @@ const tripSchema = new mongoose.Schema(
     },
     imageCollection: [
       {
-        data: Buffer,
-        contentType: String,
+        image: String,
+        alt: String
       },
     ],
     cancelationReason: {
