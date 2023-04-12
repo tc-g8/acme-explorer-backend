@@ -92,11 +92,56 @@ async function populate() {
         finder.explorer_id = explorer._id;
       });
 
+      const sampleManager = new Actor({
+        name: "Manager",
+        surname: "Acme-Explorer",
+        email: "manager@gmail.com",
+        password: "Prueba_12345",
+        phone: "123456789",
+        address: "123 Reina Mercedes Street",
+        role: ["MANAGER"],
+        banned: false
+      });
+      const sampleExplorer = new Actor({
+        name: "Explorer",
+        surname: "Acme-Explorer",
+        email: "explorer@gmail.com",
+        password: "Prueba_12345",
+        phone: "123456789",
+        address: "123 Reina Mercedes Street",
+        role: ["EXPLORER"],
+        banned: false
+      });
+      const sampleSponsor = new Actor({
+        name: "Sponsor",
+        surname: "Acme-Explorer",
+        email: "sponsor@gmail.com",
+        password: "Prueba_12345",
+        phone: "123456789",
+        address: "123 Reina Mercedes Street",
+        role: ["SPONSOR"],
+        banned: false
+      });
+      const sampleAdministrator = new Actor({
+        name: "Administrator",
+        surname: "Acme-Explorer",
+        email: "admin@gmail.com",
+        password: "Prueba_12345",
+        phone: "123456789",
+        address: "123 Reina Mercedes Street",
+        role: ["ADMINISTRATOR"],
+        banned: false
+      });
+
       await Promise.all([
         Actor.deleteMany().then(() => Actor.insertMany(actors)),
         Trip.deleteMany().then(() => Trip.insertMany(trips)),
         Application.deleteMany().then(() => Application.insertMany(completedApplications)),
-        Finder.deleteMany().then(() => Finder.insertMany(finders))
+        Finder.deleteMany().then(() => Finder.insertMany(finders)),
+        sampleAdministrator.save(),
+        sampleSponsor.save(),
+        sampleManager.save(),
+        sampleExplorer.save()
       ]).then(() => console.log("Database populated successfully"))
         .catch(err => console.log("Could not populate database correctly: " + err));
     })
