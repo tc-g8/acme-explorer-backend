@@ -23,13 +23,6 @@ const actorValidator = [
     .isString()
     .trim()
     .escape(),
-  check("email").exists({ checkNull: true, checkFalsy: true })
-    .isString()
-    .isEmail()
-    .trim()
-    .escape()
-    .normalizeEmail()
-    .custom(_checkActorEmailValid),
   check("preferredLanguage").optional()
     .isLocale()
     .trim()
@@ -66,6 +59,22 @@ const passwordNotPresent = [
     .exists()
 ];
 
+const emailValidator = [
+  check("email").exists({ checkNull: true, checkFalsy: true })
+    .isString()
+    .isEmail()
+    .trim()
+    .escape()
+    .normalizeEmail()
+    .custom(_checkActorEmailValid)
+];
+
+const emailNotPreset = [
+  check("email")
+    .not()
+    .exists()
+];
+
 const banValidator = [
   check("banned").exists({ checkNull: true })
     .isBoolean()
@@ -75,5 +84,7 @@ export {
   actorValidator,
   passwordValidator,
   banValidator,
-  passwordNotPresent
+  passwordNotPresent,
+  emailValidator,
+  emailNotPreset
 };

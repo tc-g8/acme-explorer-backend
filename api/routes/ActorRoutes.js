@@ -14,7 +14,8 @@ import {
   actorValidator,
   passwordValidator,
   banValidator,
-  passwordNotPresent
+  passwordNotPresent,
+  emailNotPreset
 } from "../controllers/validators/ActorValidator.js";
 import handleExpressValidation from "../middlewares/ValidationHandlingMiddleware.js";
 import { checkAddActorPermissions, checkActorPermissions } from "../middlewares/permissions/ActorPermissions.js";
@@ -36,6 +37,7 @@ export default function (app) {
   app.route("/api/v1/actors/:id")
     .get(findById)
     .put(
+      emailNotPreset,
       passwordNotPresent,
       actorValidator,
       handleExpressValidation,
