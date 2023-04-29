@@ -20,7 +20,6 @@ const creationSponsorshipValidator = [
     check("sponsor_id")
         .exists({ checkNull: true, checkFalsy: true })
         .withMessage("Sponsor id required")
-        .isMongoId()
 ]
 
 const updateSponsorshipValidator = [

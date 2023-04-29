@@ -7,7 +7,6 @@ const creationValidator = [
     .trim()
     .escape(),
   check("trip_id").exists({ checkNull: true, checkFalsy: true })
-    .isMongoId()
 ];
 
 const statusValidator = [

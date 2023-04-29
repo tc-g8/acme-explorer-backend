@@ -61,7 +61,6 @@ const creationValidator = [
     .exists(),
   check("manager_id")
     .exists({ checkNull: true, checkFalsy: true })
-    .isMongoId(),
 ];
 
 const updateValidator = [

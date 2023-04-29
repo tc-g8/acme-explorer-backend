@@ -32,7 +32,6 @@ const amoutSpentByExplorerValidator = [
     .custom(_checkFormatPeriod),
   check("explorer_id")
     .exists({ checkNull: true, checkFalsy: true })
-    .isMongoId()
 ];
 
 const explorersByAmountSpentValidator = [
