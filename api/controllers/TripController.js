@@ -73,7 +73,8 @@ function _generateQuery(query) {
     finder = { ...finder, price: { $gte: parseFloat(minPrice) } };
   }
   if (maxPrice) {
-    finder = { ...finder, price: { $lte: parseFloat(maxPrice) } };
+    // finder = { ...finder, price: { $lte: parseFloat(maxPrice) } };
+    finder = { ...finder, price: { ...finder.price, $lte: parseFloat(maxPrice) } };
   }
   if (minDate) {
     finder = { ...finder, startDate: { $gte: minDate } };
