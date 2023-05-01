@@ -23,15 +23,8 @@ const creationSponsorshipValidator = [
 ]
 
 const updateSponsorshipValidator = [
-    check("banner.data")
-        .optional()
-        .exists({ checkNull: true, checkFalsy: true }),
-    check("banner.contentType")
-        .optional()
-        .exists({ checkNull: true, checkFalsy: true }),
     check("landingPage")
         .optional()
-        .exists({ checkNull: true, checkFalsy: true })
         .withMessage("Landing page can not be empty")
         .isString()
         .isURL()

@@ -124,4 +124,4 @@ const cancelValidator = [
     .escape(),
 ];
 
-export { creationValidator, updateValidator, cancelValidator }
+export { creationValidator, updateValidator, cancelValidator };

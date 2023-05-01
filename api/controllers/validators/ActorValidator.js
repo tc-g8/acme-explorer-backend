@@ -28,12 +28,10 @@ const actorValidator = [
     .trim()
     .escape(),
   check("phone").optional()
-    .exists({ checkNull: true, checkFalsy: true })
     .isString()
     .trim()
     .escape(),
   check("address").optional()
-    .exists({ checkNull: true, checkFalsy: true })
     .isString()
     .trim()
     .escape(),
