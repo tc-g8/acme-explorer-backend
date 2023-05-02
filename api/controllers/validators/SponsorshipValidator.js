@@ -9,8 +9,7 @@ const creationSponsorshipValidator = [
     .isString()
     .isURL()
     .withMessage("Landing page must be an URL")
-    .trim()
-    .escape(),
+    .trim(),
   check("amount")
     .not()
     .exists(),
