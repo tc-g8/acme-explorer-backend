@@ -8,13 +8,11 @@ const creationValidator = [
   check("title")
     .exists({ checkNull: true, checkFalsy: true })
     .isString()
-    .trim()
-    .escape(),
+    .trim(),
   check("description")
     .exists({ checkNull: true, checkFalsy: true })
     .isString()
-    .trim()
-    .escape(),
+    .trim(),
   check("price", "Price can not be defined")
     .not()
     .exists(),
@@ -42,13 +40,11 @@ const creationValidator = [
   check("stages.*.title")
     .exists({ checkNull: true, checkFalsy: true })
     .isString()
-    .trim()
-    .escape(),
+    .trim(),
   check("stages.*.description")
     .exists({ checkNull: true, checkFalsy: true })
     .isString()
-    .trim()
-    .escape(),
+    .trim(),
   check("stages.*.price")
     .exists({ checkNull: true, checkFalsy: true })
     .isFloat()
@@ -71,14 +67,12 @@ const updateValidator = [
     .optional()
     .isString()
     .notEmpty()
-    .trim()
-    .escape(),
+    .trim(),
   check("description")
     .optional()
     .isString()
     .notEmpty()
-    .trim()
-    .escape(),
+    .trim(),
   check("price", "Price can not be defined")
     .not()
     .exists(),
@@ -120,8 +114,7 @@ const cancelValidator = [
   check("cancelationReason")
     .exists({ checkNull: true, checkFalsy: true })
     .isString()
-    .trim()
-    .escape(),
+    .trim(),
 ];
 
 export { creationValidator, updateValidator, cancelValidator };
