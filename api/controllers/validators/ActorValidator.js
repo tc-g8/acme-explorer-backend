@@ -17,24 +17,20 @@ const _checkActorEmailValid = async (value, { req }) => {
 const actorValidator = [
   check("name").exists({ checkNull: true, checkFalsy: true })
     .isString()
-    .trim()
-    .escape(),
+    .trim(),
   check("surname").exists({ checkNull: true, checkFalsy: true })
     .isString()
-    .trim()
-    .escape(),
+    .trim(),
   check("preferredLanguage").optional()
     .isLocale()
     .trim()
     .escape(),
   check("phone").optional()
     .isString()
-    .trim()
-    .escape(),
+    .trim(),
   check("address").optional()
     .isString()
-    .trim()
-    .escape(),
+    .trim(),
   check("role").exists({ checkNull: true, checkFalsy: true })
     .isArray()
     .isIn(["ADMINISTRATOR", "MANAGER", "EXPLORER", "SPONSOR"]),
@@ -47,7 +43,6 @@ const passwordValidator = [
   check("password").exists({ checkNull: true, checkFalsy: true })
     .isString()
     .trim()
-    .escape()
     .isStrongPassword({ minLength: 5 })
 ];
 

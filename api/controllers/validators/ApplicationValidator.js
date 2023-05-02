@@ -3,8 +3,7 @@ import { check } from "express-validator";
 const creationValidator = [
   check("comment").optional()
     .isString()
-    .trim()
-    .escape(),
+    .trim(),
   check("trip_id").exists({ checkNull: true, checkFalsy: true })
 ];
 
@@ -18,14 +17,12 @@ const commentValidator = [
   check("comment").exists({ checkNull: true, checkFalsy: true })
     .isString()
     .trim()
-    .escape()
 ];
 
 const rejectValidator = [
   check("rejectedReason").exists({ checkNull: true, checkFalsy: true })
     .isString()
     .trim()
-    .escape()
 ];
 
 export { creationValidator, statusValidator, commentValidator, rejectValidator };

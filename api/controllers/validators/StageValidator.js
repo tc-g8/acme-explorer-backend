@@ -6,14 +6,12 @@ const stageValidator = [
         .exists({ checkNull: true, checkFalsy: true })
         .withMessage("Title is required")
         .isString()
-        .trim()
-        .escape(),
+        .trim(),
     check("description")
         .exists({ checkNull: true, checkFalsy: true })
         .withMessage("Description is required")
         .isString()
-        .trim()
-        .escape(),
+        .trim(),
     check("price")
         .exists({ checkNull: true, checkFalsy: true })
         .withMessage("Price is required")
