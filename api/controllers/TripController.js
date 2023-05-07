@@ -283,7 +283,8 @@ export async function findSponsorshipsBySponsorId(req, res) {
       }, {
         '$project': {
           '_id': 0,
-          'sponsorship': '$sponsorships'
+          'sponsorship': '$sponsorships',
+          'trip_id': '$_id'
         }
       }
     ]);
@@ -294,7 +295,10 @@ export async function findSponsorshipsBySponsorId(req, res) {
       });
     } else {
       let sponsorshipsqs = [];
-      sponsorshipList.forEach(sponsorship => sponsorshipsqs.push(sponsorship.sponsorship))
+      sponsorshipList.forEach(sponsorship => sponsorshipsqs.push({
+        ...sponsorship.sponsorship,
+        trip_id: sponsorship.trip_id
+      }));
       res.send(sponsorshipsqs)
     }
   } catch (err) {
@@ -320,13 +324,17 @@ export async function getTripSponsorshipById(req, res) {
       }, {
         '$project': {
           'sponsorship': '$sponsorships',
+          'trip_id': '$_id',
           '_id': 0
         }
       }
     ]);
 
     if (sponsorship[0].sponsorship) {
-      res.send(sponsorship[0].sponsorship)
+      res.send({
+        ...sponsorship[0].sponsorship,
+        trip_id: sponsorship[0].trip_id
+      });
     } else {
       res.status(404).send({
         message: res.__("SPONSORSHIP_NOT_FOUND")
