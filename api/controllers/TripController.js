@@ -89,7 +89,7 @@ const _findTrips = async (finder, explorerId) => {
   const trips = await Trip.find({
     ...finder,
     status: "PUBLISHED"
-  });
+  }).sort({ startDate: 1 });
   const cache = await saveResultsToCache(explorerId, trips);
   return cache.results;
 };
@@ -118,7 +118,7 @@ export async function findTrips(req, res) {
     const trips = await Trip.find({
       ...finder,
       status: "PUBLISHED"
-    });
+    }).sort({ startDate: 1 });
 
     res.send(trips);
   }
