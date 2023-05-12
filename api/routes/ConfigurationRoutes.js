@@ -13,8 +13,8 @@ export default function (app) {
 
   app.route("/api/v1/configurations/:id")
     .put(
-      configurationValidator,
-      handleExpressValidation,
+      // configurationValidator,
+      // handleExpressValidation,
       updateConfiguration
     );
 
