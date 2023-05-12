@@ -26,8 +26,8 @@ export default function (app) {
   app.route("/api/v2/configurations/:id")
     .put(
       verifyUser(["ADMINISTRATOR"]),
-      configurationValidator,
-      handleExpressValidation,
+      // configurationValidator,
+      // handleExpressValidation,
       updateConfiguration
     );
 }
